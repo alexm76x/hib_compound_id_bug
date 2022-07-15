@@ -36,9 +36,6 @@ public class JPAUnitTestCase {
 		em = entityManagerFactory.createEntityManager();
 		trans = em.getTransaction();
 		trans.begin();
-		oi = new ObjectItem("oiname");
-		oi.addComment().addContent("comment");
-		em.persist(oi);
 		em.createQuery("from ObjectItem", ObjectItem.class).getResultList().forEach(objItem -> objItem.getComments().forEach(comment -> comment.getContents().forEach(content -> System.out.println(content.getText()))));
 		trans.commit();
 		em.close();
